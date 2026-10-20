@@ -19,6 +19,44 @@ python analysis.py
 
 Results: written to results.json (and charts to figures/).
 
+## Results (latest run)
+
+On seeded synthetic Voronoi colour images (120 test images, 3 seeds), per-pixel k-means colour segmentation reached 0.974 adjusted Rand index against ground truth, while my convex TV multilabel relaxation reached 0.999, at 0.31 s versus 0.015 s per image.
+
+| Metric | Value |
+|---|---|
+| baseline_score | 0.9744 |
+| improved_score | 0.9994 |
+| baseline_score_std | 0.000001179 |
+| improved_score_std | 0.000001032 |
+| improvement | 0.02507 |
+| baseline_pixel_acc | 0.9901 |
+| improved_pixel_acc | 0.9998 |
+| baseline_runtime_s | 0.01472 |
+| improved_runtime_s | 0.3077 |
+| lambda_selected | 0.1 |
+| validation_ari_selected | 0.9995 |
+| baseline_ari_64px_k3 | 0.9807 |
+| improved_ari_64px_k3 | 0.9995 |
+| baseline_runtime_s_64px_k3 | 0.009394 |
+| improved_runtime_s_64px_k3 | 0.1679 |
+| baseline_ari_64px_k5 | 0.9724 |
+| improved_ari_64px_k5 | 0.9991 |
+| baseline_runtime_s_64px_k5 | 0.01397 |
+| improved_runtime_s_64px_k5 | 0.2311 |
+| baseline_ari_96px_k3 | 0.9712 |
+| improved_ari_96px_k3 | 0.9995 |
+| baseline_runtime_s_96px_k3 | 0.01464 |
+| improved_runtime_s_96px_k3 | 0.3523 |
+| baseline_ari_96px_k5 | 0.9732 |
+| improved_ari_96px_k5 | 0.9996 |
+| baseline_runtime_s_96px_k5 | 0.02088 |
+| improved_runtime_s_96px_k5 | 0.4795 |
+
+Run on 2026-10-20. Full output: [results.json](results.json) · [run.log](run.log)
+
+Notes: Synthetic data only, so results do not reproduce the paper's dataset or reported numbers. Only 2 image sizes and 2 label counts were tested, so scaling is indicative. Validation images were generated separately from test images and used only to pick lambda. Seeds affect only k-means initialisation, so the std reflects that. Runtime is wall-clock on the CI machine and includes the shared k-means step.
+
 ## Reference
 
 This project is motivated by the following paper:
